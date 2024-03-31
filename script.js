@@ -178,4 +178,4 @@ document.querySelector(".nav").addEventListener("click", function (e) {
 });
 */
 
-console.log(`issue 2`);
+console.log(`issue 3`);
