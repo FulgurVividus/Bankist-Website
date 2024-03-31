@@ -1,11 +1,15 @@
 "use strict";
 
-//# Modal window
+//# Elements Selection
 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
+const btnSrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+//# Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -31,9 +35,7 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-//# Scroll affect
-const btnSrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
+//# Button Scrolling
 
 btnSrollTo.addEventListener("click", function (e) {
   const s1coordinates = section1.getBoundingClientRect();
@@ -46,6 +48,28 @@ btnSrollTo.addEventListener("click", function (e) {
   //   behavior: "smooth",
   // });
   section1.scrollIntoView({ behavior: "smooth" }); // new school
+});
+
+//# Page Naviagtion
+
+//* Not a good solution
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+//* Better solution with event delegation
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // Matching Strategy
+  if (e.target.classList.contains("nav__link")) {
+    const id = e.target.getAttribute("href");
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  }
 });
 
 //! Lectures
@@ -177,5 +201,3 @@ document.querySelector(".nav").addEventListener("click", function (e) {
   console.log(`NAV`, e.target, e.currentTarget);
 });
 */
-
-console.log(`testing issue 2`);
