@@ -178,4 +178,4 @@ document.querySelector(".nav").addEventListener("click", function (e) {
 });
 */
 
-console.log(`testing issue`);
+console.log(`testing issue 2`);
