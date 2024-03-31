@@ -177,3 +177,5 @@ document.querySelector(".nav").addEventListener("click", function (e) {
   console.log(`NAV`, e.target, e.currentTarget);
 });
 */
+
+console.log(`issue`);
