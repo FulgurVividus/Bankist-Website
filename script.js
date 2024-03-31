@@ -1,7 +1,6 @@
 "use strict";
 
-///////////////////////////////////////
-// Modal window
+//# Modal window
 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
@@ -30,6 +29,23 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape" && !modal.classList.contains("hidden")) {
     closeModal();
   }
+});
+
+//# Scroll affect
+const btnSrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnSrollTo.addEventListener("click", function (e) {
+  const s1coordinates = section1.getBoundingClientRect();
+  console.log(s1coordinates);
+
+  //* Scrolling
+  // window.scrollTo({ // old school
+  //   left: s1coordinates.left + window.pageXOffset,
+  //   top: s1coordinates.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+  section1.scrollIntoView({ behavior: "smooth" }); // new school
 });
 
 //! Lectures
