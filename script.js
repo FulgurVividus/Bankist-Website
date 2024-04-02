@@ -163,7 +163,7 @@ headerObserver.observe(header);
 
 const revealSectionCallback = function (entries, observer) {
   const [entry] = entries; // to get 0.15
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) {
     return;
@@ -186,6 +186,39 @@ const sectionObserver = new IntersectionObserver(
 allSections.forEach((section) => {
   sectionObserver.observe(section);
   section.classList.add("section--hidden");
+});
+
+//# Lazy Loading Images
+
+const imgTargets = document.querySelectorAll("img[data-src]");
+
+const loadImgCallback = function (entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) {
+    return;
+  }
+
+  // Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener("load", function (e) {
+    e.target.classList.remove("lazy-img");
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const loadImgOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin: "200px",
+};
+
+const imgObserver = new IntersectionObserver(loadImgCallback, loadImgOptions);
+imgTargets.forEach((img) => {
+  imgObserver.observe(img);
 });
 
 //! Lectures
