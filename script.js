@@ -319,6 +319,13 @@ const slider = function () {
 };
 slider();
 
+//# beforeunload, to ask if a user wants to leave
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = "";
+});
+
 //! Lectures
 
 //! Selecting, Creating and Deleting
@@ -495,4 +502,24 @@ const obsOptions = {
 
 const observer = new IntersectionObserver(obsCallback, obsOptions);
 observer.observe(section1);
+*/
+
+//! Lifecycle DOM Events
+/*
+//# DOMEventLoaded
+document.addEventListener("DOMEventLoaded", function (e) {
+  console.log(`HTML parsed and DOM tree built`, e);
+});
+
+//# load
+window.addEventListener("load", function (e) {
+  console.log(`Page fully loaded`, e);
+});
+
+//# beforeunload
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = "";
+});
 */
